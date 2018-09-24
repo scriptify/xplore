@@ -1,0 +1,89 @@
+.square {
+  height: 10px;
+  width: 280px;
+  background-color: #ec5d57;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+  transform: translate(-0%, -650%);
+}
+.main-button {
+    position: fixed;
+    background-color: #ec5d57; 
+    border: none;
+    color: white;
+    padding: 28px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transform: translate(-1%, -100%);
+    top: 100%;
+    font-size: 70px;
+    width: 100%
+}
+.background-image{
+  background: url("/factory\ image/CommunitySpace_FirstFloor_0401a.jpg") no-repeat;
+  background-size: 100% 170%;
+ }
+ .QR-image{
+   background: url("/factory\ image/CommunitySpace_FirstFloor_03.jpg") no-repeat;
+   background-size: 100% 170%;
+ }
+#firstscreen {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.5cm;
+}
+#welcomescreen {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 120px;
+}
+h1 {
+  margin-top: 250px;
+  margin-bottom: 180px;
+  margin-right: 150px;
+  margin-left: 120px;
+  transform: translate(-0%, 40%);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  font-size: 450%
+}
+h2{
+  margin-top: 650px;
+  margin-bottom: 350px;
+  margin-right: 120px;
+  margin-left: 120px;
+  transform: translate(-0%, -450%);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  font-size: 590%
+}
+.popup {
+  position: center;
+  display: inline-block;
+  cursor: pointer;
+}
+.popup .popuptext {
+  visibility: show;
+  width: 80px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 200px 150px;
+  position: center;
+  z-index: 1;
+  bottom: 160%;
+  left: 50%;
+  margin-left: 10px;
+}
