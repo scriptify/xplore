@@ -103,6 +103,11 @@ body {
   padding-right: 5vw;
 }
 
+.main-container__title img {
+  height: 100px;
+  width: auto;
+}
+
 .popup {
   position: center;
   display: inline-block;
