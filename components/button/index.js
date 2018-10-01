@@ -1,5 +1,5 @@
 function createButton({ text }) {
   return `
-    <button class="main-button" type="button">${text}</button>
+    <button class="main-button" id="mainButton" type="button">${text}</button>
   `;
 }

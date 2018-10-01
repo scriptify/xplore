@@ -1,10 +1,15 @@
+const app = {
+  rootElem: null
+};
+
 function testApp() {
-  const $app = document.querySelector('#app');
+  
 
   const html = `
     ${
         createInformationTile({
-            title: 'Hello!',
+            title: '<img src="logo.svg" />',
+            backgroundImg: 'https://source.unsplash.com/random/800x800',
             texts: [
                 {
                     content: `
@@ -38,10 +43,51 @@ function testApp() {
   $app.innerHTML = html;
 }
 
+function onShowPlaceInformation(placeInformation) {
+  app.rootElem.innerHTML = `
+    ${
+      createInformationTile(placeInformation)
+    }
+    ${
+      createButton({ text: 'Next hint' })
+    }
+  `;
+}
+
+function onShowHint(hint) {
+ app.rootElem.innerHTML = `
+    ${
+      createInformationTile(hint)
+    }
+    ${
+      createButton({ text: 'Scan QR' })
+    }
+  `;
+}
+
+function onNotify(notification) {
+
+}
+
+function waitForBtnClick() {
+  return new Promise((resolve, reject) => {
+    const btnToClick = document.querySelector('#mainButton');
+    if (!btnToClick) {
+      reject('No button found!');
+      return;
+    }
+    btnToClick.addEventListener('click', resolve);
+  });
+}
+
 window.addEventListener('load', () => {
-  testApp();
-  const sh = new ScavengerHunt({
-    onShowPlaceInformation: placeInformation => console.log('place info', placeInformation),
-    onShowHint: hint => console.log('hint', hint),
+  app.rootElem = document.querySelector('#app');
+  new ScavengerHunt({
+    onShowPlaceInformation,
+    onShowHint,
+    waitForBtnClick,
+    onNotify,
+    qrCameraContainer: '#camera',
+    dataFolder: 'data'
   });
 });
