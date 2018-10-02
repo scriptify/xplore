@@ -3,7 +3,7 @@ function loadJSONFile(filePath) {
 }
 
 function scanQR(selector) {
-  return new Promise(async (resolve) => {
+  return new Promise(async (resolve, reject) => {
     const element = document.querySelector(selector);
     element.style.display = 'block';
 
@@ -22,8 +22,17 @@ function scanQR(selector) {
       resolve(parsedNum);
     });
 
-    const cameras = await Instascan.Camera.getCameras();
-    scanner.start(cameras[cameras.length - 1]);
+    try {
+      const cameras = await Instascan.Camera.getCameras();
+      if (cameras.length === 0) {
+        reject();
+        return;
+      }
+      await scanner.start(cameras[cameras.length - 1]);
+    } catch (e) {
+      reject(e);
+      return;
+    }
     /* const cameras = (await navigator.mediaDevices.enumerateDevices()).filter(device => device.kind === 'videoinput');
     const constraints = {
       video: {
@@ -76,22 +85,41 @@ class ScavengerHunt {
       await this.waitForBtnClick();
       this.scavengerHunt({ jsonPath: `${this.dataFolder}/${currentHint.nextHint}.json` });
     } else {
+
       // Show hint information
       this.onShowHint(currentHint.hint);
       await this.waitForBtnClick();
-      const qrCodeValue = await scanQR(this.qrCameraContainer);
+      let qrCodeValue = null;
+
+      try {
+        qrCodeValue = await scanQR(this.qrCameraContainer);
+      } catch (e) {
+        this.onNotify({
+          title: 'Camera error',
+          content: `
+            Was not able to access the device camera.
+            You must accept the according dialog.
+            Maybe your device doesn't support camera access.
+          `,
+          btnContent: 'Reload',
+          action: () => window.location.reload()
+        });
+        return;
+      }
+
       if (qrCodeValue === currentHint.id) {
         this.onShowPlaceInformation(currentHint.placeInformation);
         await this.waitForBtnClick();
         if (currentHint.nextHint) {
           this.scavengerHunt({ jsonPath: `${this.dataFolder}/${currentHint.nextHint}.json` })
         } else {
-          this.onNotify({ title: 'Congrats!', body: 'You arrived at the end of this scavenger hunt!' })
+          this.onNotify({ title: 'Congrats!', content: 'You arrived at the end of this scavenger hunt!' })
         }
       } else {
-        await this.onNotify({ title: 'Wrong QR', body: 'This is the wrong QR code. Keep searching for the correct one!' });
+        await this.onNotify({ title: 'Wrong QR', content: 'This is the wrong QR code. Keep searching for the correct one!' });
         this.scavengerHunt({ jsonPath });
       }
+
     }
   }
 }
