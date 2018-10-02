@@ -1,3 +1,5 @@
+const USER_PROGRESS_KEY = 'user-progress';
+
 function loadJSONFile(filePath) {
   return fetch(filePath).then(res => res.json());
 }
@@ -72,12 +74,21 @@ class ScavengerHunt {
   }
 
   async setup(metaPath) {
-    const metaData = await loadJSONFile(metaPath);
-    this.scavengerHunt({ jsonPath: metaData.entryHint });
+    const userProgress = JSON.parse(
+      localStorage.getItem(USER_PROGRESS_KEY)
+    );
+    if (userProgress && userProgress.currentHintId) {
+      this.scavengerHunt({ jsonPath: `${this.dataFolder}/${userProgress.currentHintId}.json` });
+    } else {
+      const metaData = await loadJSONFile(metaPath);
+      this.scavengerHunt({ jsonPath: metaData.entryHint });
+    }
   }
 
   async scavengerHunt({ jsonPath }) {
     const currentHint = await loadJSONFile(jsonPath);
+    // Save progress
+    localStorage.setItem(USER_PROGRESS_KEY, JSON.stringify({ currentHintId: currentHint.id }));
 
     if (!currentHint.hint) {
       // Show place information
