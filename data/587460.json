@@ -1,0 +1,22 @@
+{
+    "id": 587460,
+    "hint": {
+        "title": "postponed MEETING TIME",
+        "texts": [
+            {
+                "content": "Oh no, Room Rick is already taken, but maybe the cubes are free! Go to the Cubes on the second floor."
+            }
+        ],
+        "backgroundImg": "https://source.unsplash.com/random/500x500/?meeting"
+    },
+    "placeInformation": {
+        "title": "Meeting rooms/cubes",
+        "texts": [
+            {
+                "img": "https://source.unsplash.com/random/500x500/?cube",
+                "content": "Factory provides many co-working spaces and meeting rooms that you can book on the Factory app. One really cool concept are the “cubes”. They are small boxes where up to 6 people can sit together and discuss their project.<br />P.S.: If all cubes in the second floor are occupied, just use the Cubes in the third floor."
+            }
+        ]
+    },
+    "nextHint": 668493
+}

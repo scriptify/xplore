@@ -1,0 +1,22 @@
+{
+    "id": 668493,
+    "hint": {
+        "title": "BREAKY BREAK",
+        "texts": [
+            {
+                "content": "Playing some tunes on the piano and drinking some more, you guessed it, coffee, will clear your mind after your intense meeting. Go to the café."
+            }
+        ],
+        "backgroundImg": "https://source.unsplash.com/random/500x500/?bar"
+    },
+    "placeInformation": {
+        "title": "Café",
+        "texts": [
+            {
+                "img": "https://source.unsplash.com/random/500x500/?bar",
+                "content": "The Factory Café is the best place to meet up and chill and have a tasteful coffee, bagel, sandwich or cake. As a factory member you get 20% discount on everything. You also have the opportunity to play the Factory piano."
+            }
+        ]
+    },
+    "nextHint": 790865
+}

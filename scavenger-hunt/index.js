@@ -1,5 +1,10 @@
 const USER_PROGRESS_KEY = 'user-progress';
 
+function saveProgress(currentHintId, status) {
+  console.log('save progress', status);
+  localStorage.setItem(USER_PROGRESS_KEY, JSON.stringify({ currentHintId, status }));
+}
+
 function loadJSONFile(filePath) {
   return fetch(filePath).then(res => res.json());
 }
@@ -78,54 +83,87 @@ class ScavengerHunt {
       localStorage.getItem(USER_PROGRESS_KEY)
     );
     if (userProgress && userProgress.currentHintId) {
-      this.scavengerHunt({ jsonPath: `${this.dataFolder}/${userProgress.currentHintId}.json` });
+      this.scavengerHunt({
+        jsonPath: `${this.dataFolder}/${userProgress.currentHintId}.json`,
+        initialStatus: userProgress.status
+      });
     } else {
       const metaData = await loadJSONFile(metaPath);
       this.scavengerHunt({ jsonPath: metaData.entryHint });
     }
   }
 
-  async scavengerHunt({ jsonPath }) {
-    const currentHint = await loadJSONFile(jsonPath);
+  async showWelcome(currentHint) {
+    // It is the initial start hint
+    // Show place information
+    this.onShowPlaceInformation(currentHint.placeInformation);
+    await this.waitForBtnClick();
+    this.scavengerHunt({ jsonPath: `${this.dataFolder}/${currentHint.nextHint}.json` });
+  }
+
+  async showHint(currentHint) {
     // Save progress
-    localStorage.setItem(USER_PROGRESS_KEY, JSON.stringify({ currentHintId: currentHint.id }));
+    saveProgress(currentHint.id, 'hint');
+    // Show hint information
+    this.onShowHint(currentHint.hint);
+    await this.waitForBtnClick();
+  }
+
+  async scanQR(currentHint) {
+    let qrCodeValue = null;
+
+    try {
+      qrCodeValue = await scanQR(this.qrCameraContainer);
+    } catch (e) {
+      this.onNotify({
+        title: 'Camera error',
+        content: `
+          Was not able to access the device camera.
+          You must accept the according dialog.
+          Maybe your device doesn't support camera access.
+        `,
+        btnContent: 'Reload',
+        action: () => window.location.reload()
+      });
+      return;
+    }
+
+    if (qrCodeValue === currentHint.id) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  async scavengerHunt({ jsonPath, initialStatus = 'hint' }) {
+    const currentHint = await loadJSONFile(jsonPath);
+
+    const showPlaceInfo = async (hint) => {
+      this.onShowPlaceInformation(currentHint.placeInformation);
+      saveProgress(currentHint.id, 'placeInfo');
+      await this.waitForBtnClick();
+      if (currentHint.nextHint) {
+        this.scavengerHunt({ jsonPath: `${this.dataFolder}/${currentHint.nextHint}.json` })
+      } else {
+        this.onNotify({ title: 'Congrats!', content: 'You arrived at the end of this scavenger hunt!' })
+      }
+    }
+
+    if (initialStatus === 'placeInfo') {
+      await showPlaceInfo();
+      return;
+    }
 
     if (!currentHint.hint) {
-      // Show place information
-      this.onShowPlaceInformation(currentHint.placeInformation);
-      await this.waitForBtnClick();
-      this.scavengerHunt({ jsonPath: `${this.dataFolder}/${currentHint.nextHint}.json` });
+      await this.showWelcome(currentHint);
     } else {
+      await this.showHint(currentHint);
+      const status = await this.scanQR(currentHint);
 
-      // Show hint information
-      this.onShowHint(currentHint.hint);
-      await this.waitForBtnClick();
-      let qrCodeValue = null;
+      if (status) {
 
-      try {
-        qrCodeValue = await scanQR(this.qrCameraContainer);
-      } catch (e) {
-        this.onNotify({
-          title: 'Camera error',
-          content: `
-            Was not able to access the device camera.
-            You must accept the according dialog.
-            Maybe your device doesn't support camera access.
-          `,
-          btnContent: 'Reload',
-          action: () => window.location.reload()
-        });
-        return;
-      }
+        showPlaceInfo();
 
-      if (qrCodeValue === currentHint.id) {
-        this.onShowPlaceInformation(currentHint.placeInformation);
-        await this.waitForBtnClick();
-        if (currentHint.nextHint) {
-          this.scavengerHunt({ jsonPath: `${this.dataFolder}/${currentHint.nextHint}.json` })
-        } else {
-          this.onNotify({ title: 'Congrats!', content: 'You arrived at the end of this scavenger hunt!' })
-        }
       } else {
         await this.onNotify({ title: 'Wrong QR', content: 'This is the wrong QR code. Keep searching for the correct one!' });
         this.scavengerHunt({ jsonPath });

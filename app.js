@@ -66,14 +66,17 @@ function onShowHint(hint) {
 }
 
 function onNotify({ action = () => {}, ...notification }) {
-  const notificationHTML = createNotification(notification);
-  app.rootElem.insertAdjacentHTML('beforeend', notificationHTML);
-  const $notificationBtn = document.querySelector('#notificationBtn');
-  $notificationBtn.addEventListener('click', () => {
-    const $notificationContainer = document.querySelector('#notificationContainer');
-    action();
-    $notificationContainer.remove();
-  }); 
+  return new Promise((resolve) => {
+    const notificationHTML = createNotification(notification);
+    app.rootElem.insertAdjacentHTML('beforeend', notificationHTML);
+    const $notificationBtn = document.querySelector('#notificationBtn');
+    $notificationBtn.addEventListener('click', () => {
+      const $notificationContainer = document.querySelector('#notificationContainer');
+      action();
+      $notificationContainer.remove();
+      resolve();
+    });
+  });
 }
 
 function waitForBtnClick() {

@@ -1,0 +1,22 @@
+{
+    "id": 10690485,
+    "hint": {
+        "title": "CINEMA AND CHILL",
+        "texts": [
+            {
+                "content": "The Harry Potter movie night starts in 5 minutes, hurry up!"
+            }
+        ],
+        "backgroundImg": "https://source.unsplash.com/random/500x500/?film"
+    },
+    "placeInformation": {
+        "title": "Cinema",
+        "texts": [
+            {
+                "img": "https://source.unsplash.com/random/500x500/?cinema",
+                "content": "Although Factory is a coworking space we have our own cinema! But this isn’t the only amazing thing. The cinema is equipped with very comfortable sofas and modern technic. Some lectures take place in the Cinema or maybe you can organize the next movie night in the cinema."
+            }
+        ]
+    },
+    "nextHint": 11578493
+}

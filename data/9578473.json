@@ -1,0 +1,22 @@
+{
+    "id": 9578473,
+    "hint": {
+        "title": "work hard, PLAY HARD",
+        "texts": [
+            {
+                "content": "You’ve been really productive in the library and now want to have some fun with your fellow colleagues. Go the playground and find your QR code."
+            }
+        ],
+        "backgroundImg": "https://source.unsplash.com/random/500x500/?playground"
+    },
+    "placeInformation": {
+        "title": "Playground",
+        "texts": [
+            {
+                "img": "https://source.unsplash.com/random/500x500/?balls",
+                "content": "You just want to have a little break? Go to the playground, relax, play some table tennis or dive into the ballpit. Definitely the best place to have some fun at Factory!"
+            }
+        ]
+    },
+    "nextHint": 10690485
+}

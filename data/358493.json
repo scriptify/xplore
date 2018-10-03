@@ -1,0 +1,22 @@
+{
+    "id": 358493,
+    "hint": {
+        "title": "LUNCH TIME",
+        "texts": [
+            {
+                "content": "After having worked you’re a** off you’re starving to death. Go to a place where you can have a burger."
+            }
+        ],
+        "backgroundImg": "https://source.unsplash.com/random/500x500/?burger"
+    },
+    "placeInformation": {
+        "title": "Factory kitchen",
+        "texts": [
+            {
+                "img": "https://source.unsplash.com/random/500x500/?food",
+                "content": "As a factory member you get 20% discount on everything. If you want to have a delicious lunch, just go to the Factory Kitchen. They offer different meals each day, and nice salads and burgers everyday. Next to the Kitchen there is the Event Space, where all kind of events take place. Just have a look at the Factory <a href='https://factoryberlin.com/events/'>website</a>."
+            }
+        ]
+    },
+    "nextHint": 423456
+}

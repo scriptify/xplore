@@ -1,0 +1,22 @@
+{
+    "id": 8857406,
+    "hint": {
+        "title": "GET INSPIRED",
+        "texts": [
+            {
+                "content": "Although you’re now more focused again you’re still lacking inspiration for your project. Find a book in the library that inspires you."
+            }
+        ],
+        "backgroundImg": "https://source.unsplash.com/random/500x500/?book"
+    },
+    "placeInformation": {
+        "title": "Library",
+        "texts": [
+            {
+                "img": "https://source.unsplash.com/random/500x500/?library",
+                "content": "The Library is the perfect place to work concentratedly without distraction or read a book. The Factory and CODE have a huge collection of useful books. You can find a list of all CODE-books in the wiki. Or just discover all the amazing books on your own to get inspired."
+            }
+        ]
+    },
+    "nextHint": 9578473
+}
