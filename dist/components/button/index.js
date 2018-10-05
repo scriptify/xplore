@@ -1,0 +1,1 @@
+"use strict";function createButton(a){var b=a.text;return"\n    <button class=\"main-button\" id=\"mainButton\" type=\"button\">".concat(b,"</button>\n  ")}

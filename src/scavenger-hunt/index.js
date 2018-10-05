@@ -82,6 +82,7 @@ class ScavengerHunt {
     const userProgress = JSON.parse(
       localStorage.getItem(USER_PROGRESS_KEY)
     );
+    console.log(metaPath, userProgress);
     if (userProgress && userProgress.currentHintId) {
       this.scavengerHunt({
         jsonPath: `${this.dataFolder}/${userProgress.currentHintId}.json`,
