@@ -9,14 +9,14 @@ function loadJSONFile(filePath) {
   return fetch(filePath).then(res => res.json());
 }
 
-function scanQR(selector) {
+function scanQR({ video: selector }) {
   return new Promise(async (resolve, reject) => {
     const element = document.querySelector(selector);
     element.style.display = 'block';
 
     // Scan QR
-    const scanner = new Instascan.Scanner({ video: element, mirror: false });
-    scanner.addListener('scan', async (result) => {
+    const scanner = new UniversalQrScanner({ video: element  });
+    scanner.addEventListener('scan', async (result) => {
       let parsedNum;
       try {
         parsedNum = parseInt(result);
@@ -29,19 +29,17 @@ function scanQR(selector) {
       resolve(parsedNum);
     });
 
-    try {
+    /* try {
       const cameras = await Instascan.Camera.getCameras();
       if (cameras.length === 0) {
-        alert('No cameras found!')
         reject('No camera found!');
         return;
       }
       await scanner.start(cameras[cameras.length - 1]);
     } catch (e) {
-      alert(JSON.stringify(e));
       reject(e);
       return;
-    }
+    } */
     /* const cameras = (await navigator.mediaDevices.enumerateDevices()).filter(device => device.kind === 'videoinput');
     const constraints = {
       video: {
@@ -116,7 +114,7 @@ class ScavengerHunt {
     let qrCodeValue = null;
 
     try {
-      qrCodeValue = await scanQR(this.qrCameraContainer);
+      qrCodeValue = await scanQR({ video: this.qrCameraContainer });
     } catch (e) {
       this.onNotify({
         title: 'Camera error',
