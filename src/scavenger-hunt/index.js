@@ -32,7 +32,7 @@ function scanQR(selector) {
     try {
       const cameras = await Instascan.Camera.getCameras();
       if (cameras.length === 0) {
-        reject();
+        reject('No camera found!');
         return;
       }
       await scanner.start(cameras[cameras.length - 1]);
@@ -126,7 +126,7 @@ class ScavengerHunt {
         btnContent: 'Reload',
         action: () => window.location.reload()
       });
-      return;
+      return -1;
     }
 
     if (qrCodeValue === currentHint.id) {
@@ -165,7 +165,7 @@ class ScavengerHunt {
 
         showPlaceInfo();
 
-      } else {
+      } else if (status !== -1) {
         await this.onNotify({ title: 'Wrong QR', content: 'This is the wrong QR code. Keep searching for the correct one!' });
         this.scavengerHunt({ jsonPath });
       }
