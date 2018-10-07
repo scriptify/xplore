@@ -32,11 +32,13 @@ function scanQR(selector) {
     try {
       const cameras = await Instascan.Camera.getCameras();
       if (cameras.length === 0) {
+        alert('No cameras found!')
         reject('No camera found!');
         return;
       }
       await scanner.start(cameras[cameras.length - 1]);
     } catch (e) {
+      alert(JSON.stringify(e));
       reject(e);
       return;
     }
