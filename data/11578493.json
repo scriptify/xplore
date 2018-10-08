@@ -7,13 +7,13 @@
                 "content": "It’s late, time to go home! (fyi Factory closes at 9pm)"
             }
         ],
-        "backgroundImg": "https://source.unsplash.com/random/500x500/?time"
+        "backgroundImg": "img/background-0.jpg"
     },
     "placeInformation": {
         "title": "Code entrance",
         "texts": [
             {
-                "img": "https://source.unsplash.com/random/500x500/?cinema",
+                "img": "img/hint-9.jpg",
                 "content": "After 9pm you aren’t allowed to stay in the Factory. But CODE wouldn’t be CODE if we have an exception. You can stay at the CODE campus 24/7. To enter the CODE Campus before 8am, after 9pm or on weekends, just use the fourth entrance, the CODE entrance."
             }
         ]

@@ -48,7 +48,8 @@ class UniversalQrScanner {
       }
     }
 
-    requestAnimationFrame(this.tick);
+    if (!this.hasStopped)
+      requestAnimationFrame(this.tick);
   }
 
   addEventListener(type, cb = missingParam('callback function (2°)')) {
@@ -59,6 +60,9 @@ class UniversalQrScanner {
   }
 
   stop() {
+    this.hasStopped = true;
+    if (this.canvas)
+      this.canvas.remove();
     if (this.animFrameId)
       cancelAnimationFrame(this.animFrameId);
   }

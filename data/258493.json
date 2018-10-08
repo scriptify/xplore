@@ -7,13 +7,13 @@
                 "content": "Now you’re energized and motivated to get shit done at the CODE campus. Go to the CODE sign."
             }
         ],
-        "backgroundImg": "https://source.unsplash.com/random/500x500/?code"
+        "backgroundImg": "img/background-4.jpg"
     },
     "placeInformation": {
         "title": "CODE campus",
         "texts": [
             {
-                "img": "https://source.unsplash.com/random/500x500/?code",
+                "img": "img/hint-2.jpg",
                 "content": "The CODE Campus is located in the 4th floor of the Factory. Here you can work, chill and attend the different lectures, seminars, workshops and events CODE offers. In the CODE Community Kitchen you can also get drinks, make some food and have a good time."
             }
         ]

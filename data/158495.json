@@ -7,13 +7,13 @@
                 "content": "You’re too tired to work so better grab a free coffee to find your first QR code."
             }
         ],
-        "backgroundImg": "https://source.unsplash.com/random/500x500/?coffee"
+        "backgroundImg": "img/background-1.jpg"
     },
     "placeInformation": {
         "title": "Community kitchen",
         "texts": [
             {
-                "img": "https://source.unsplash.com/random/500x500/?coffee",
+                "img": "img/hint-1.jpg",
                 "content": "There is a Community kitchens in every floor where you can find free coffee, tea and water (even sparkling water). You can also print, scan and copy your documents or just sit together and have lunch. "
             }
         ]

@@ -1,7 +1,6 @@
 const USER_PROGRESS_KEY = 'user-progress';
 
 function saveProgress(currentHintId, status) {
-  console.log('save progress', status);
   localStorage.setItem(USER_PROGRESS_KEY, JSON.stringify({ currentHintId, status }));
 }
 
@@ -82,7 +81,7 @@ class ScavengerHunt {
     const userProgress = JSON.parse(
       localStorage.getItem(USER_PROGRESS_KEY)
     );
-    console.log(metaPath, userProgress);
+
     if (userProgress && userProgress.currentHintId) {
       this.scavengerHunt({
         jsonPath: `${this.dataFolder}/${userProgress.currentHintId}.json`,

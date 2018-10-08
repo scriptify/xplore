@@ -7,13 +7,13 @@
                 "content": "Now you’re all set again to RICK you’re meeting! Go to room RICK."
             }
         ],
-        "backgroundImg": "https://source.unsplash.com/random/500x500/?space"
+        "backgroundImg": "img/background-4.jpg"
     },
     "placeInformation": {
         "title": "Meeting rooms",
         "texts": [
             {
-                "img": "https://source.unsplash.com/random/500x500/?meeting",
+                "img": "img/hint-4.jpg",
                 "content": "At CODE we have different meeting rooms where lectures and meetings take place. You can reserve a room on your own via the Google Calendar. Besides the meeting rooms you can of course meet with your team in the chill-out-area or the community kitchen."
             }
         ]
